@@ -1,0 +1,141 @@
+ This is the repository-wide ignore file. Suffixes below are ignored
+# i.e. committing not allowed.
+
+syntax: glob
+
+# [git]
+
+# [emacs]
+
+# [deleteme]
+*.Trash
+*.DELETE
+*.DELETEME
+
+# [backup]
+*.bak
+
+# [archives]
+*.tar
+*.tar.gz
+*.tar.bz2
+*.zip
+
+# [editors]
+*.swp
+*.elc
+*~
+*\#*\#
+
+# [python]
+*.pyc
+*.pyo
+*.bdf
+*.bak
+build/
+dist/
+__pycache__/
+
+# [ipython]
+ipython/.ipythonrc.d/Crash_report_ipython.txt
+ipython/.ipythonrc.d/profile_default/db/dhist
+ipython/.ipythonrc.d/profile_default/history.sqlite
+*.DEPRECATED*
+
+
+# [miscellaneous]
+*.orig
+*.ori
+*.old
+*.svn
+*.rej
+*.egg-info
+backup/
+*.log
+*.pdf
+
+# [home-aroldo-dot]
+.Trash/
+config/.config/
+eshell/.eshell/
+local/.local/opt/
+local/.local/share
+
+# [mozilla]
+Cache/
+bookmarkbackups/
+Crash Reports/
+
+# [emacs]
+legacy/.emacs.d/el-get/
+legacy/.emacs.d/straight/
+.emacs.d/session*
+.emacs.d/eshell/history
+.emacs.d/eshell/lastdir
+.emacs.d/tramp
+.emacs.d/url/cache/*
+eshell/history
+eshell/lastdir
+.emacs.d/ido.last
+
+# [gnome]
+.gnome2/keyrings/
+.gnome2/keyring*
+gnome2/.gnome2/evince/print-settings
+
+# [mozilla-thunderbird]
+mozilla-thunderbird/
+ImapMail/
+Mail/
+mozilla-thunderbird/.mozilla-thunderbird/*-data/
+
+# [too-big]
+mozilla/
+mozilla/.mozilla/firefox/firefox-aroldo.default/urlclassifier3.sqlite
+mozilla/.mozilla/firefox/firefox-aroldo.default/places.sqlite
+mozilla/.mozilla/firefox/firefox-aroldo.default/urlclassifier3.sqlite
+mozilla/.mozilla/firefox/firefox-aroldo.default/extensions/moonlight@novell.com/plugins/moonlight/libmoonpluginxpi.so
+*/urlclassifier*
+
+# [mozilla]
+cookies/
+cookies.*
+
+# [further-miscellaneous]
+local/.local/share/gvfs-metadata/
+local/.local/share/applications/mimeapps.list
+bash/.bashrc.d/venv-py-2.7.sh
+bash/.bashrc.d/venv-tmp.sh
+gnome2/.gnome2/backgrounds.xml
+gnome2/.gnome2/panel2.d/default/launchers/gedit.desktop
+ipython/.ipythonrc.d/profile_default/db/autorestore/v
+ipython/.ipythonrc.d/profile_default/db/bookmarks
+local/.local/share/desktop-couch/.management_design/e50a2cb154be3a$
+local/.local/share/desktop-couch/management.couch
+local/.local/share/desktop-couch/users.couch
+local/.local/share/desktop-couch/.management_design/*
+
+
+syntax: regexp
+
+# [log]
+.*\.log\.\d{1,2}$
+ipython_.*_log\.py
+
+
+# added by aHg on Sat Jan 30 19:31:19 2016
+syntax: glob
+emacs/.emacs.d/semanticdb/!home!aroldo!sync!devel!Java-projects!java2!semantic.cache
+emacs/.emacs.d/semanticdb/!home!aroldo!sync!home-aroldo-dot!emacs!.emacs.d!templates!semantic.cache
+emacs/.emacs.d/semanticdb/!home!aroldo!tmp!tmp-python!semantic.cache
+
+
+# [eww]
+emacs/.emacs.d/url/cache/*
+
+# [misc]
+syntax: glob
+spacemacs/.spacemacs.d/Videos/
+be-ignored/
+tmp/
+Videos
