@@ -93,6 +93,9 @@ def test_NPath():
 
 
 class PlusOne(int):
+    """
+    Instantiates an incremented number.
+    """
     def __new__(cls, *p, **kwargs):
         """
         Builds an instance of int incremented by 1
