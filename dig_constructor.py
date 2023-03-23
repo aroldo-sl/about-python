@@ -94,6 +94,9 @@ def test_NPath():
 
 class PlusOne(int):
     def __new__(cls, *p, **kwargs):
+        """
+        Builds an instance of int incremented by 1
+        """
         n = super().__new__(cls, *p, **kwargs)
         plus_one = n + 1
         return plus_one
