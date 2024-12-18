@@ -3,31 +3,37 @@ print("Trying out tkinter")
 
 import tkinter as tk
 from tkinter import ttk
-import subprocess, shutil, shlex
-
-url=""
-
-executable = shutil.which("yt-dlp")
-command_line = f'xterm -hold -132 -bg white -fg black -fa Monospace -fs 14 -geometry 150x30  -e "{executable}; bash"'
-print(command_line)
-arg_list = shlex.split(command_line)
-print(arg_list)
+import subprocess, shutil, shlex, sys
 
 root = tk.Tk()
+
+url_default="https://www.youtube.com/watch?v=S-rB0pHI9fU"
+url_string = tk.StringVar()
+url_string.set(url_default)
+print("Default url:", url_string.get())
+
+executable = shutil.which("yt-dlp")
+command_line = f'xterm -hold -132 -bg white -fg black -fa Monospace -fs 14 -geometry 150x30  -e "{executable}"'
+print(command_line, file = sys.stderr)
+arg_list = shlex.split(command_line)
+print(arg_list, file = sys.stderr)
+
 root.title("Herrquesada YouTube App")
 root.geometry('1200x100+150+150')
 
 prompt = ttk.Label(root, text = 'Type the video url here:')
-inputBox = ttk.Entry(root, textvariable = tk.StringVar(), width = 140)
+inputBox = ttk.Entry(root, textvariable = url_string, width = 140)
+url_default_length = len(url_string.get())
+inputBox.selection_range(0,url_default_length)
 okButton = ttk.Button(text="Download")
 
 def download(event):
-    text = inputBox.get()
-    print ("Downloading", text)
+    url = inputBox.get()
+    arg_list.append(url)
     proc = subprocess.run(arg_list,
                           stdout = subprocess.PIPE,
                           stderr = subprocess.PIPE)
-    return proc
+    root.destroy()
     
 okButton.bind("<Button-1>", download)
 okButton.bind("<Return>", download)
