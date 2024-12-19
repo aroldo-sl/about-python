@@ -4,11 +4,12 @@ print("Trying out tkinter")
 import tkinter as tk
 from tkinter import ttk
 import subprocess, shutil, shlex, sys
+import pyperclip
 
 root = tk.Tk()
 
 url_default="https://www.youtube.com/watch?v=S-rB0pHI9fU"
-url_string = tk.StringVar()
+url_string = tk.StringVar(root)
 url_string.set(url_default)
 print("Default url:", url_string.get())
 
@@ -27,6 +28,12 @@ url_default_length = len(url_string.get())
 inputBox.selection_range(0,url_default_length)
 okButton = ttk.Button(text="Download")
 
+def insert_url(event):
+    text = pyperclip.paste()
+    event.widget.delete(0, tk.END)
+    event.widget.insert(0,text)
+inputBox.bind("<Button-3>", insert_url)
+    
 def download(event):
     url = inputBox.get()
     arg_list.append(url)
