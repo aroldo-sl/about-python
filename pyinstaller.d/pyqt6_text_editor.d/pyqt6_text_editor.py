@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # ##https://github.com/pyqt/examples/tree/_/src/07%20Qt%20Text%20Editor
-from PyQt6.QtWidgets import *
+from PyQt6.QtWidgets import (QApplication,
+                             QPlainTextEdit,
+                             QMainWindow,
+                             QMessageBox,
+                             QFileDialog)
 from PyQt6.QtGui import QKeySequence, QAction
 
 class MainWindow(QMainWindow):
