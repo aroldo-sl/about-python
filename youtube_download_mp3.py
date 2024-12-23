@@ -8,12 +8,12 @@ from pathlib import Path
 
 command_line_fmt = 'xterm -hold -132 -bg white -fg black -fa Monospace -fs 14 -geometry 150x30  -e {executable} --config-locations  {config_dir} -- {url}'
 url_default="https://www.youtube.com/watch?v=S-rB0pHI9fU"
-executable = "yt-dlp"
+executable = Path(shutil.which("yt-dlp"))
 config_subdir = "mp3.d"
 
 HOME_path = Path(os.environ.get("HOME"))
 XDG_CONFIG_HOME_path  = HOME_path/".config"
-config_dir_path = XDG_CONFIG_HOME_path/executable/config_subdir
+config_dir_path = XDG_CONFIG_HOME_path/executable.name/config_subdir
 subprocess_env = dict(
     XDG_CONFIG_HOME = str(XDG_CONFIG_HOME_path),
     config_dir = str(config_dir_path))
