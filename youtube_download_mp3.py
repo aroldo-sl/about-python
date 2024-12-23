@@ -26,14 +26,23 @@ os.environ.update(subprocess_env)
 
 ## # The GUI to get the url and call the subprocess.
 root = tk.Tk()
-root.title("Herrquesada YouTube App")
-root.geometry('1200x100+150+150')
+root.title("")
+style = ttk.Style()
+root.geometry('1200x150+150+150')
+## Layout TButton seems to be pre-defined in ttk.
+style.configure("Title.TLabel", font = ("Helvetia", 20), foreground = "magenta")
+style.configure("DButton.TButton", font = ("Helvetia",14), foreground = 'red')
+style.configure("DLabel.TLabel", font = ("Helvetia",16), foreground = "green")
 url_tkstring = tk.StringVar(root)
 url_tkstring.set(url_default)
 # ## <debug>
 print("Default url:", url_tkstring.get())
 # ##</debug>
-prompt = ttk.Label(root, text = 'Type the video url here:')
+titleLabel = ttk.Label(root, style = "Title.TLabel",
+                       text = "Herrquesada YouTube App")
+prompt = ttk.Label(root,
+                   style = "DLabel.TLabel",
+                   text = 'Type the video url here:')
 inputBox = ttk.Entry(root,
                      font='georgia 16 bold',
                      foreground='green',
@@ -41,7 +50,9 @@ inputBox = ttk.Entry(root,
                      textvariable = url_tkstring,
                      )
 inputBox.selection_range(0, tk.END)
+
 okButton = ttk.Button(root,
+                      style = "DButton.TButton", 
                       text="Download")
 
 # ## the inputBox event handler
@@ -69,7 +80,7 @@ okButton.bind("<Button-1>", download)
 okButton.bind("<Return>", download)
 
 # ## Packing everything.
-for w in (prompt, inputBox, okButton):
+for w in (titleLabel, prompt, inputBox, okButton):
     w.pack()
 inputBox.focus()
 
