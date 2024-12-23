@@ -79,8 +79,14 @@ def download(event):
 okButton.bind("<Button-1>", download)
 okButton.bind("<Return>", download)
 
-# ## Packing everything.
-for w in (titleLabel, prompt, inputBox, okButton):
+# ## Packing everything using the Pack layout manager without parameters:
+widgets = (
+    titleLabel,
+    prompt,
+    inputBox,
+    okButton,
+    )
+for w in widgets:
     w.pack()
 inputBox.focus()
 
