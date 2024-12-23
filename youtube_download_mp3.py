@@ -26,24 +26,25 @@ os.environ.update(subprocess_env)
 
 ## # The GUI to get the url and call the subprocess.
 root = tk.Tk()
-root.title("")
-style = ttk.Style()
 root.geometry('1200x150+150+150')
+root.title("")
+frame = ttk.Frame(root)
+style = ttk.Style()
 ## TButton and TLabel layouts seem to be pre-defined in ttk.
 style.configure("Title.TLabel", font = ("Helvetia", 20), foreground = "magenta")
 style.configure("DButton.TButton", font = ("Helvetia",14), foreground = 'red')
 style.configure("DLabel.TLabel", font = ("Helvetia",16), foreground = "green")
-url_tkstring = tk.StringVar(root)
+url_tkstring = tk.StringVar(frame)
 url_tkstring.set(url_default)
 # ## <debug>
 print("Default url:", url_tkstring.get())
 # ##</debug>
-titleLabel = ttk.Label(root, style = "Title.TLabel",
+titleLabel = ttk.Label(frame, style = "Title.TLabel",
                        text = "Herrquesada YouTube App")
-prompt = ttk.Label(root,
+prompt = ttk.Label(frame,
                    style = "DLabel.TLabel",
                    text = 'Type the video url here:')
-inputBox = ttk.Entry(root,
+inputBox = ttk.Entry(frame,
                      font='georgia 16 bold',
                      foreground='green',
                      width = 200,
@@ -51,7 +52,7 @@ inputBox = ttk.Entry(root,
                      )
 inputBox.selection_range(0, tk.END)
 
-okButton = ttk.Button(root,
+okButton = ttk.Button(frame,
                       style = "DButton.TButton", 
                       text="Download")
 
@@ -81,6 +82,7 @@ okButton.bind("<Return>", download)
 
 # ## Packing everything using the Pack layout manager without parameters:
 widgets = (
+    frame,
     titleLabel,
     prompt,
     inputBox,
