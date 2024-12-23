@@ -29,7 +29,7 @@ root = tk.Tk()
 root.title("")
 style = ttk.Style()
 root.geometry('1200x150+150+150')
-## Layout TButton seems to be pre-defined in ttk.
+## TButton and TLabel layouts seem to be pre-defined in ttk.
 style.configure("Title.TLabel", font = ("Helvetia", 20), foreground = "magenta")
 style.configure("DButton.TButton", font = ("Helvetia",14), foreground = 'red')
 style.configure("DLabel.TLabel", font = ("Helvetia",16), foreground = "green")
