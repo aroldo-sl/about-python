@@ -1,5 +1,8 @@
 #!/usr/bin/env python
-
+"""
+tkinter GUI for yt-dlp in a subprocess.
+Uses xterm for yt-dlp.
+"""
 import tkinter as tk
 from tkinter import ttk
 import subprocess, shutil, shlex, sys, os
@@ -31,9 +34,15 @@ url_tkstring.set(url_default)
 print("Default url:", url_tkstring.get())
 # ##</debug>
 prompt = ttk.Label(root, text = 'Type the video url here:')
-inputBox = ttk.Entry(root, textvariable = url_tkstring, width = 140)
+inputBox = ttk.Entry(root,
+                     font='georgia 16 bold',
+                     foreground='green',
+                     width = 200,
+                     textvariable = url_tkstring,
+                     )
 inputBox.selection_range(0, tk.END)
-okButton = ttk.Button(text="Download")
+okButton = ttk.Button(root,
+                      text="Download")
 
 # ## the inputBox event handler
 def insert_url(event):
