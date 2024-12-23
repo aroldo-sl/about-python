@@ -5,6 +5,7 @@ from PyQt6.QtWidgets import (QApplication,
                              QMainWindow,
                              QMessageBox,
                              QFileDialog)
+# ## Non-widget elements are imported from PyQt6.QtGui
 from PyQt6.QtGui import QKeySequence, QAction
 
 class MainWindow(QMainWindow):
