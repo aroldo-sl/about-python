@@ -32,8 +32,7 @@ print("Default url:", url_tkstring.get())
 # ##</debug>
 prompt = ttk.Label(root, text = 'Type the video url here:')
 inputBox = ttk.Entry(root, textvariable = url_tkstring, width = 140)
-url_default_length = len(url_tkstring.get())
-inputBox.selection_range(0,url_default_length)
+inputBox.selection_range(0, tk.END)
 okButton = ttk.Button(text="Download")
 
 # ## the inputBox event handler
