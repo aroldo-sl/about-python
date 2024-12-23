@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#@file: text_editor.py
 # ##https://github.com/pyqt/examples/tree/_/src/07%20Qt%20Text%20Editor
 from PyQt6.QtWidgets import (QApplication,
                              QPlainTextEdit,
@@ -7,6 +8,13 @@ from PyQt6.QtWidgets import (QApplication,
                              QFileDialog)
 # ## Non-widget elements are imported from PyQt6.QtGui
 from PyQt6.QtGui import QKeySequence, QAction
+
+####################################################
+# ## This object operates in the background. It is
+# ## required to initialize a QApplication object in
+# ## this module before any Widget is initialized.
+app = QApplication([])
+####################################################
 
 class MainWindow(QMainWindow):
     def closeEvent(self, e):
@@ -27,8 +35,6 @@ class MainWindow(QMainWindow):
         elif answer & QMessageBox.Cancel:
             e.ignore()
 
-app = QApplication([])
-app.setApplicationName("Text Editor")
 text = QPlainTextEdit()
 window = MainWindow()
 window.setCentralWidget(text)
@@ -88,4 +94,8 @@ def show_about_dialog():
 about_action.triggered.connect(show_about_dialog)
 
 window.show()
+
+app.setApplicationName("Text Editor")
+# ## The application implicitly manages
+# ## all widgets in this module.
 app.exec()
