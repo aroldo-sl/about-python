@@ -14,6 +14,8 @@ def garbage():
     _slog.info(f"Guten Tag {x}!")
     return x
 
+# ## This test function cannot be used outside pytest.
+# ## Only pytest can import caplog as a fixture.
 def test_slog_in_rubbish(caplog):
     """
     Tests if a simple log object
@@ -24,6 +26,8 @@ def test_slog_in_rubbish(caplog):
         rubbish()
     assert "666" in caplog.text 
 
+# ## This test function cannot be used outside pytest.
+# ## Only pytest can import caplog as a fixture.
 def test_slog_in_garbage(caplog):
     """
     Tests if a simple log object
