@@ -6,5 +6,12 @@ _slog = make_slog(level = __level__)
 def rubbish():
     _slog.info("Guten Tag!")
     pass
-rubbish()
+
+def test_slog_in_rubbish():
+    """
+    Tests if a simple log object
+    works in the rubbsh function
+    namespace.
+    """
+    rubbish()
 
