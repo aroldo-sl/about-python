@@ -14,20 +14,22 @@ def garbage():
     _slog.info(f"Guten Tag {x}!")
     return x
 
-def test_slog_in_rubbish():
+def test_slog_in_rubbish(caplog):
     """
     Tests if a simple log object
     works in the rubbish function
     namespace.
     """
-    x = rubbish()
-    assert x == 666 
+    with caplog.at_level(_slog.level):
+        rubbish()
+    assert "666" in caplog.text 
 
-def test_slog_in_garbage():
+def test_slog_in_garbage(caplog):
     """
     Tests if a simple log object
     works in the garbage function
     namespace.
     """
-    x = garbage()
-    assert x == 666, "Beelzebub or 666?" 
+    with caplog.at_level(_slog.level):
+        garbage()
+    assert "666" in caplog.text, "666 or Beelzebub?" 
