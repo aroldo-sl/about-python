@@ -21,7 +21,7 @@ _slog = _make_slog()
 ## #</slog>
 _slog.debug("BEGIN " + sys.argv[0])
 
-#
+## # <parse-arguments>
 parser = argparse.ArgumentParser(description = """
     This script reads each line of the batch file and
     interprets each line  as the name of one package to be installed.
@@ -45,13 +45,18 @@ parser.add_argument(
     help = "One argument per line.",
 )
 args = parser.parse_args()
-if len(sys.argv) == 1:
-    exit(parser.print_help())
+## # </parse-arguments>
+
+class BatchLine(str):
+    def __init__(self, *p, **kw):
+        str.__init__(self, *p, **kw)
+
+def test_BatchLine_instance():
+    _slog.debug("Testing instantiation.")
+    line = BatchLine()
+    assert isinstance(line, BatchLine)
 
 if __name__ == "__main__":
-    print("batch file:",  args.batch_file)
-    print("command:", args.command)
-    
-
+    test_BatchLine_instance()
 
 
