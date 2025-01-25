@@ -2,16 +2,24 @@
 """
 Usage examples of 'argparse'.
 """
-import sys, logging, pathlib
-import argparse
+import sys, logging, pathlib, argparse
 __level__ = logging.DEBUG
-logging.basicConfig()
-_slog = logging.getLogger()
-_slog.setLevel(__level__)
-_script_path = pathlib.Path(sys.argv[0]).resolve()
-_script_name = _script_path.with_suffix("").name 
-msg = f"\nSCRIPT: {_script_name}\n"
-_slog.debug(msg)
+
+## #<slog>
+def _make_slog():
+    try:
+        from asl.utils import make_slog
+        slog = make_slog()
+    except ImportError:
+        logging.basicConfig()
+        from uuid import uuid4
+        slog_name = __name__ + uuid4().hex[:6]
+        slog = logging.getLogger(_slog_name)
+    slog.setLevel(__level__)
+    return slog 
+_slog = _make_slog()
+## #</slog>
+_slog.debug("BEGIN " + sys.argv[0])
 
 #
 parser = argparse.ArgumentParser(description = """
