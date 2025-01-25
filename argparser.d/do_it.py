@@ -2,27 +2,33 @@
 """
 Usage examples of 'argparse'.
 """
-from argparse import ArgumentParser
 import sys
-_this_script = sys.argv[0]
-print("Number or arguments:{nargs}".format(nargs = len(sys.argv)))
-parser = ArgumentParser(description = """
-    This script reads each line of the package list and
-    interprets is as the0 name of a package to be installed.
+import argparse
+from pathlib import Path
+_this_script_path = Path(sys.argv[0]).resolve()
+
+#
+parser = argparse.ArgumentParser(description = """
+    This script reads each line of the batch file and
+    interprets each line  as the name of one package to be installed.
     """)
 parser.add_argument(
     "-f",
     "--file",
+    metavar = "BATCH_FILE",
     type = str,
-    dest = "packages_input_list",
+    dest = "batch_file",
     default = "packages-input.list",
-    help = "File containing a list of names of packages to be installed.",
+    help = "One argument per line.",
 )
 args = parser.parse_args()
 if len(sys.argv) == 1:
     exit(parser.print_help())
 print(args)
-print(f"END of {_this_script}")
+
+if __name__ == "__main__":
+    print(f"Calling {_this_script_path}")
+    print()
 
 
 
