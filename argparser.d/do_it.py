@@ -49,8 +49,9 @@ if len(sys.argv) == 1:
     exit(parser.print_help())
 
 if __name__ == "__main__":
-    print(args.batch_file)
-    print()
+    print("batch file:",  args.batch_file)
+    print("command:", args.command)
+    
 
 
 
