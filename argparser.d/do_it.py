@@ -2,26 +2,32 @@
 """
 Usage examples of 'argparse'.
 """
-import sys, logging, pathlib, argparse
+import sys, logging, pathlib, argparse, pprint, uuid
 __level__ = logging.DEBUG
 
 ## #<slog>
-def _make_slog():
-    try:
-        from asl.utils import make_slog
-        slog = make_slog()
-    except ImportError:
-        logging.basicConfig()
-        from uuid import uuid4
-        slog_name = __name__ + uuid4().hex[:6]
-        slog = logging.getLogger(_slog_name)
-    slog.setLevel(__level__)
+def _make_slog(prefix = __name__, level = None):
+    """
+    Returns a simpler logger.
+    The logger name is unique to the current module.
+    Requires the 'logging' module 
+    """
+    import logging, uuid
+    if level is none:
+        try:
+            level = __level__
+        except NameError:
+            level = logging.DEBUG
+    random_string = uuid.uuid4().hex[:6]
+    slog_name = f"{prefix}-{random_string}"
+    logging.basicConfig()
+    slog = logging.getLogger(slog_name)
+    slog.setLevel(level)
     return slog 
 _slog = _make_slog()
 ## #</slog>
-_slog.debug("BEGIN " + sys.argv[0])
 
-## # <parse-arguments>
+## # <cli-parser-config>
 parser = argparse.ArgumentParser(description = """
     This script reads each line of the batch file and
     interprets each line  as the name of one package to be installed.
@@ -33,7 +39,7 @@ parser.add_argument(
     type = str,
     dest = "command",
     default = "echo",
-    help = "One argument per line.",
+    help = "Command to be called on the batch file lines.",
 )
 parser.add_argument(
     "-f",
@@ -41,22 +47,45 @@ parser.add_argument(
     metavar = "BATCH_FILE",
     type = str,
     dest = "batch_file",
-    default = "packages-input.list",
-    help = "One argument per line.",
+    default = "batch-file.txt",
+    help = "One argument per line in the batch file..",
 )
-args = parser.parse_args()
-## # </parse-arguments>
+# # </cli-parser-config>
 
-class BatchLine(str):
-    def __init__(self, *p, **kw):
-        str.__init__(self, *p, **kw)
+#
+def batch_processing(batch_file = None, command = None):
 
-def test_BatchLine_instance():
-    _slog.debug("Testing instantiation.")
-    line = BatchLine()
-    assert isinstance(line, BatchLine)
+    """
+    Apply command to each line of batch_file.
+    """
+    if command is None:
+        pass
+    if batch_file is None:
+        pass
 
+#   
+def test_parse_args():
+    _slog.debug("\n Testing argparse args.")
+    args = parser.parse_args(["-c","echo", "-f","batch-file.txt"])
+    assert args.command == "echo"
+    assert args.batch_file == "batch-file.txt"
+
+#
+def main(cli_options  = None):
+    """
+    Called with the script's cli options as args.
+    """
+    if cli_options is None:
+        cli_options = sys.argv[1:]
+    msg = pprint.pformat(cli_options)
+    _slog.debug(f'\n cli options:{msg}')
+
+#
+def test_main():
+    cli_options = ["-c", "echo", "-f", "batch-file.txt"]
+    main(cli_options)
+    pass
+
+#   
 if __name__ == "__main__":
-    test_BatchLine_instance()
-
-
+    main()
