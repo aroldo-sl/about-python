@@ -16,7 +16,7 @@ else
 fi
 
 ls xy
-for letter in aaaa bbbb cccc ddddd  
+for letter in aaaa bbbb cccc dddd  
 do
     echo "letter:$letter"
     ls $letter

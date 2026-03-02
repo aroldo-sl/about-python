@@ -11,7 +11,7 @@ proc_env = dict(GARBAGE="garbage",
                 # RUBBISH="rubbish",
                 )
 os.environ.update(proc_env)
-cmd_tuple = ["./pipe-to-python.sh"]
+cmd_tuple = ["./pipe-to-Python.sh"]
 with subprocess.Popen(cmd_tuple,
                        text=True,
                        stdout = subprocess.PIPE,
